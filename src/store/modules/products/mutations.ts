@@ -8,7 +8,7 @@ export default {
     state.products = payload
     state.filteredProducts = null
   },
-  mutateProductItem(state, payload: Product) {
+  mutateProductItem(state, payload: Product | null) {
     state.product = payload
   },
   mutateFilteredProductItems(state, payload: { products: Array<Product> | null; filterValue: string | null }) {

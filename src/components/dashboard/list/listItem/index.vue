@@ -12,7 +12,9 @@
       {{
         headerItem && headerItem.title === COMMON_HEADER_VALUES.PRICE && item
           ? `$${item[headerItem.title.toLowerCase()]}`
-          : item[headerItem.title.toLowerCase()]
+          : headerItem && item
+            ? item[headerItem.title.toLowerCase()]
+            : ''
       }}
     </span>
     <Checkbox v-if="checkbox" />
@@ -22,15 +24,12 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { ListHeaderItem } from '@/configs/lists'
-import { useRouter } from 'vue-router'
 import Checkbox from '@/components/elements/checkBox/index.vue'
 
 enum COMMON_HEADER_VALUES {
   TITLE = 'Title',
   PRICE = 'Price',
 }
-
-const router = useRouter()
 
 interface Props {
   item?: any
@@ -40,17 +39,11 @@ interface Props {
 }
 
 const { item, headerItem, checkbox, index } = defineProps<Props>()
-
-const handleTitleClick = () => {
-  if (headerItem && headerItem.title === COMMON_HEADER_VALUES.TITLE) {
-    router.push(`/product/${item.id}`)
-  }
-}
 </script>
 
 <style scoped lang="scss">
 .table-list-item {
-  @apply flex min-h-[78px] w-full min-w-[150px] items-center justify-start bg-white px-4 py-2.5 text-center text-dark-100/[.65];
+  @apply flex min-h-[78px] w-full min-w-[150px] items-center justify-start bg-white px-4 py-2.5 text-left text-dark-100/[.65];
 }
 
 .table-list-item.checkbox {

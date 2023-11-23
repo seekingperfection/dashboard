@@ -4,8 +4,8 @@
     :class="{ sortable: item && item.sortOptions, active: isActive, checkbox, first: index === 0 }"
     @click="handleHeaderItemClick"
   >
-    <span v-if="!checkbox">{{ item.title }}</span>
-    <img v-if="!checkbox && item.sortOptions" :src="getChevron" alt="chevron" class="ml-2 h-[12px] w-[12px]" />
+    <span v-if="!checkbox && item">{{ item.title }}</span>
+    <img v-if="!checkbox && item && item.sortOptions" :src="getChevron" alt="chevron" class="ml-2 h-[12px] w-[12px]" />
     <Checkbox v-if="checkbox" />
   </th>
 </template>

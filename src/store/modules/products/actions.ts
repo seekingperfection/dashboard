@@ -4,7 +4,6 @@ import { ProductsState } from '@/store/modules/products/state'
 import { Product, ProductsResponse } from '@/types/api/productInterface'
 import { apiRequest } from '@/lib/apiRequest'
 // eslint-disable-next-line unused-imports/no-unused-imports
-import ApiError from '@/exceptions/ApiException'
 import { SORT_BY_TYPES, SORT_METHOD_TYPES } from '@/types/api/sortInterface'
 import { checkFilterValue } from '@/utils/checkFilterValue'
 import { sortProducts } from '@/utils/sortProducts'
@@ -13,7 +12,7 @@ export default {
   setProductItems({ commit }, payload: Array<Product> | null): void {
     commit('mutateProductItems', payload)
   },
-  setProductItem({ commit }, payload: Product): void {
+  setProductItem({ commit }, payload: Product | null): void {
     commit('mutateProductItem', payload)
   },
   async fetchProducts({ dispatch, state }): Promise<void> {
@@ -29,7 +28,7 @@ export default {
       }
 
       dispatch('setLoadingState', false)
-    } catch (error: ApiError) {
+    } catch (error: any) {
       dispatch('setLoadingState', false)
     }
   },
@@ -41,7 +40,7 @@ export default {
 
       dispatch('setProductItem', response)
       dispatch('setLoadingState', false)
-    } catch (error: ApiError) {
+    } catch (error: any) {
       dispatch('setLoadingState', false)
     }
   },
@@ -58,7 +57,7 @@ export default {
       }
 
       dispatch('setLoadingState', false)
-    } catch (error: ApiError) {
+    } catch (error: any) {
       dispatch('setLoadingState', false)
     }
   },

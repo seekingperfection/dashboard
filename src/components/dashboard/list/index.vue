@@ -2,7 +2,7 @@
   <div class="list-table-container px-2.5 py-[34px] lg:px-[40px]">
     <table v-if="list && list.listHeader?.length && data !== null && data.length" class="list">
       <tr class="list-header table-row">
-        <ListHeaderColumn v-if="list.listOptions.markAsChecked" :checkbox="true" />
+        <ListHeaderColumn v-if="list.listOptions?.markAsChecked" :checkbox="true" />
         <ListHeaderColumn
           v-for="(item, index) in list.listHeader"
           :key="index"
@@ -13,7 +13,7 @@
         />
       </tr>
       <tr v-for="(item, index) in data" :key="index" class="list-item-row">
-        <ListItem v-if="list.listOptions.markAsChecked" :checkbox="true" />
+        <ListItem v-if="list.listOptions?.markAsChecked" :checkbox="true" />
         <ListItem
           v-for="(headerItem, headerIndex) in list.listHeader"
           :key="headerIndex"
@@ -30,7 +30,6 @@
 <script setup lang="ts">
 import { defineProps, ref } from 'vue'
 import { LIST_TYPES, lists, List } from '@/configs/lists'
-import { useStore } from 'vuex'
 import ListHeaderColumn from '@/components/dashboard/list/listHeaderColumn/index.vue'
 import ListItem from '@/components/dashboard/list/listItem/index.vue'
 
@@ -40,7 +39,6 @@ interface Props {
 }
 
 const { listConfigId, data } = defineProps<Props>()
-const store = useStore()
 const selectedSort = ref<number | null>(null)
 const list: List | undefined = lists.find((list) => list.id === listConfigId)
 
