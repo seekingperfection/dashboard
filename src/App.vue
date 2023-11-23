@@ -1,3 +1,5 @@
 <template>
-  <div class="flex">hello vue xD</div>
+  <div class="relative flex h-full w-full">
+    <router-view />
+  </div>
 </template>

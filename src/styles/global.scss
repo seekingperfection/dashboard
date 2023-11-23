@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-body text-base;
+@import './common/styles.scss';
+
+body,
+html,
+#app {
+  @apply m-0 flex h-full w-full bg-gray-100 font-body text-base;
 }
