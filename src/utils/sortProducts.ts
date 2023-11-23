@@ -5,7 +5,7 @@ export const sortProducts = (
   products: Array<Product>,
   payload: { sortBy: SORT_BY_TYPES; sortMethod: SORT_METHOD_TYPES },
 ): Array<Product> => {
-  return products.sort((a: Product, b: Product) => {
+  return products.sort((a: any, b: any) => {
     const aValue = a[payload.sortBy.toLowerCase()]
     const bValue = b[payload.sortBy.toLowerCase()]
 

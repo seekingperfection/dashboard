@@ -71,11 +71,6 @@ const Menu: MenuItem[] = [
   },
 ]
 
-interface Props {
-  opened?: boolean
-  onClose: () => void
-}
-
 const router = useRouter()
 
 const handleLogoClick = () => {

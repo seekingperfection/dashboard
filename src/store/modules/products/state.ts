@@ -3,7 +3,7 @@ import { SORT_BY_TYPES } from '@/types/api/sortInterface'
 
 export interface ProductsState {
   products: Array<Product> | null
-  product: null
+  product: Product | null
   filteredProducts: Array<Product> | null
   filterValue: null | string
   sortBy: null | SORT_BY_TYPES
